@@ -1,0 +1,19 @@
+---
+- hosts: all_vms
+  become: yes
+  vars_files:
+  - vault/main.yml
+  tasks:
+  - name: create user
+    user:
+      name: vm
+      password: "{{ 'password' | password_hash('sha512') }}"
+      shell: /bin/bash
+      groups: sudo
+      append: yes
+      create_home: yes
+  - name: Set up SSH key
+    authorized_key:
+      user: vm
+      state: present
+      key: "{{ lookup('file', '~/.ssh/vm_main.pub') }}"
