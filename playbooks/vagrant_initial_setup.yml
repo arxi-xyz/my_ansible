@@ -1,19 +1,27 @@
 ---
 - hosts: all_vms
-  become: yes
+  name: Just setting ssh and create user for my own setup
+  become: true
   vars_files:
-  - vault/main.yml
+    - vault/main.yml
   tasks:
-  - name: create user
-    user:
-      name: vm
-      password: "{{ 'password' | password_hash('sha512') }}"
-      shell: /bin/bash
-      groups: sudo
-      append: yes
-      create_home: yes
-  - name: Set up SSH key
-    authorized_key:
-      user: vm
-      state: present
-      key: "{{ lookup('file', '~/.ssh/vm_main.pub') }}"
+    - name: Create user
+      ansible.builtin.user:
+        name: vm
+        password: "{{ 'password' | password_hash('sha512') }}"
+        shell: /bin/bash
+        groups: sudo
+        append: true
+        create_home: true
+    - name: Set up SSH key
+      ansible.posix.authorized_key:
+        user: vm
+        state: present
+        key: "{{ lookup('file', '~/.ssh/vm_main.pub') }}"
+    - name: Ensure user is in sudo group
+      ansible.builtin.user:
+        name: "{{ username }}"
+        groups: sudo
+        append: true
+      vars:
+        username: "vm"

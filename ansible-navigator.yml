@@ -2,10 +2,10 @@ ansible-navigator:
   ansible:
     inventory:
       entries:
-      - ./inventories
+        - ./inventories
   execution-environment:
     container-engine: docker
-    image: ghcr.io/ansible/community-ansible-dev-tools:latest
+    image: my_ansible_ee
     pull:
       policy: missing
   logging:
@@ -13,8 +13,8 @@ ansible-navigator:
     append: false
     file: ./logs/ansible-navigator.log
   playbook-artifact:
-    enable: true
     save-as: ./artifacts/{playbook_name}-artifact.json
+    enable: true
   mode: stdout
   editor:
     command: code -w
