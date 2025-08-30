@@ -38,10 +38,17 @@ This command is like telling Ansible, “Go do your thing, and make it quick!”
 
 ## 📂 What’s Inside
 Here’s the lay of the land:
-- **playbooks/**: Where the Ansible playbooks live, ready to automate your world.
+- **ansible-navigator.yml**: Configuration for `ansible-navigator` to customize playbook runs.
+- **artifacts/**: Stores generated artifacts from playbook executions.
+- **context/**: Contains context-specific files for the Execution Environment.
+- **execution-environment.yml**: The blueprint for building the Ansible Execution Environment.
+- **group_vars/**: Group variables for defining shared configurations across hosts.
 - **inventories/**: Inventory files to define your target hosts.
+- **logs/**: Stores logs generated during playbook runs for debugging and tracking.
+- **playbooks/**: Where the Ansible playbooks live, ready to automate your world.
 - **roles/**: Reusable roles for specific tasks, because DRY (Don’t Repeat Yourself) is the way to go.
-- **execution-environment.yml**: The blueprint for building the Execution Environment.
+- **vault/**: Secure storage for sensitive data using Ansible Vault.
+- **.vscode/**: Configuration for Visual Studio Code, including extensions and settings for a smooth development experience.
 
 ## 🌟 Why It’s Awesome
 - **Reusable**: Roles are designed to be modular and reusable across projects.
