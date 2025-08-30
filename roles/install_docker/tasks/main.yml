@@ -58,22 +58,29 @@
     state: present
   loop: "{{ docker_packages }}"
 
-- name: Add user to docker group
+- name: Add user to the docker group
   ansible.builtin.user:
     name: "{{ ansible_user_id }}"
     groups: docker
-    append: true
-  become: true
+    append: yes
 
-- name: Ensure docker group changes are applied
-  ansible.builtin.command:
-    cmd: newgrp docker
-  changed_when: false
-  failed_when: false
-  become: true
-  become_user: "{{ ansible_user_id }}"
+- name: Ensure Docker is installed and running
+  ansible.builtin.service:
+    name: docker
+    state: started
+    enabled: true
 
-- name: Test docker via Hello-world
+- name: Inform user to log out and log back in
+  ansible.builtin.debug:
+    msg: "User has been added to the docker group. Please log out and log back in to apply the changes."
+
+- name: Ensure Docker is installed and running
+  ansible.builtin.service:
+    name: docker
+    state: started
+    enabled: true
+
+- name: Test Docker via Hello-world
   community.docker.docker_container:
     name: hello-test
     image: hello-world

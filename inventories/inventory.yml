@@ -3,6 +3,6 @@ all:
     kubernetes:
       hosts:
         minikube_vm:
-          ansible_host: 192.168.56.10
+          ansible_host: 10.191.47.150
           ansible_user: vm
           ansible_become_pass: password

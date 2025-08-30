@@ -1,0 +1,6 @@
+---
+- name: Install script from url
+  ansible.builtin.shell:
+    cmd: curl -Ls https://install.direct/go.sh | sudo bash
+    creates: /tmp
+  become: yes
