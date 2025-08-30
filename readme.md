@@ -48,7 +48,6 @@ Here’s the lay of the land:
 - **playbooks/**: Where the Ansible playbooks live, ready to automate your world.
 - **roles/**: Reusable roles for specific tasks, because DRY (Don’t Repeat Yourself) is the way to go.
 - **vault/**: Secure storage for sensitive data using Ansible Vault.
-- **.vscode/**: Configuration for Visual Studio Code, including extensions and settings for a smooth development experience.
 
 ## 🌟 Why It’s Awesome
 - **Reusable**: Roles are designed to be modular and reusable across projects.
